@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pywwa-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pywwa-{{ version }}.tar.gz
   sha256: 34aef5bd4b1082fc8f6cabad51a6f5b4c2f0d938f0c155f9c083ecd0f5c45fde
 
 build:
@@ -47,15 +47,18 @@ build:
     - pywwa-spammer = pywwa.workflows.spammer:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
+  ignore_run_exports_from:
+    - tomli
 
 requirements:
   host:
-    - python >=3.9
+    - python {{ python_min }}
     - setuptools-scm
     - pip
+    - setuptools
   run:
-    - python >=3.9
+    - python >={{ python_min }}
     - click
     - geopandas
     - metpy
@@ -72,6 +75,8 @@ requirements:
     - requests
     - shapely
     - sqlalchemy
+    # sigh
+    - tomli
     - treq
     - twisted
 
@@ -116,6 +121,7 @@ test:
     - pywwa-spammer --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/akrherz/pyWWA
