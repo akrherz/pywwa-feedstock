@@ -48,10 +48,10 @@ build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 1
-
-requirements:
   ignore_run_exports_from:
     - tomli
+
+requirements:
   host:
     - python {{ python_min }}
     - setuptools-scm
