@@ -50,7 +50,7 @@ build:
   number: 1
 
 requirements:
-  ignore_run_exports:
+  ignore_run_exports_from:
     - tomli
   host:
     - python {{ python_min }}
