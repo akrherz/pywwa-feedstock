@@ -50,6 +50,8 @@ build:
   number: 1
 
 requirements:
+  ignore_run_exports:
+    - tomli
   host:
     - python {{ python_min }}
     - setuptools-scm
@@ -73,6 +75,8 @@ requirements:
     - requests
     - shapely
     - sqlalchemy
+    # sigh
+    - tomli
     - treq
     - twisted
 
