@@ -1,5 +1,5 @@
 {% set name = "pywwa" %}
-{% set version = "1.6" %}
+{% set version = "1.7.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,12 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pywwa-{{ version }}.tar.gz
-  sha256: 34aef5bd4b1082fc8f6cabad51a6f5b4c2f0d938f0c155f9c083ecd0f5c45fde
+  sha256: c833a9a207c47f756152ab5c6b7b5a1e19e62f287f72fad53b55530e8abcc34c
 
 build:
   entry_points:
     - pywwa-parse-afos-dump = pywwa.workflows.afos_dump:main
+    - pywwa-parse-alaska-marine = pywwa.workflows.alaska_marine:main
     - pywwa-parse-aviation = pywwa.workflows.aviation:main
     - pywwa-parse-bufr-surface = pywwa.workflows.bufr_surface:main
     - pywwa-parse-cf6 = pywwa.workflows.cf6:main
@@ -47,7 +48,7 @@ build:
     - pywwa-spammer = pywwa.workflows.spammer:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
   ignore_run_exports_from:
     - tomli
 
@@ -72,7 +73,6 @@ requirements:
     - pyiem
     - pymemcache
     - pyproj
-    - requests
     - shapely
     - sqlalchemy
     # sigh
@@ -86,6 +86,7 @@ test:
   commands:
     - pip check
     - pywwa-parse-afos-dump --help
+    - pywwa-parse-alaska-marine --help
     - pywwa-parse-aviation --help
     - pywwa-parse-bufr-surface --help
     - pywwa-parse-cf6 --help
