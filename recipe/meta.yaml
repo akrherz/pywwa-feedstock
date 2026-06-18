@@ -1,5 +1,6 @@
 {% set name = "pywwa" %}
-{% set version = "1.7.1" %}
+{% set version = "1.7.2" %}
+{% set python_min = "3.11" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +8,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pywwa-{{ version }}.tar.gz
-  sha256: 6d14c82934bfc50a34477ad070b244317f0bd4f21cfe6dac44513249be6f7bda
+  sha256: c92bc95576e0e7d9a5afaf991ab6ca816571f4822bd6c153c5849fa6c9aae540
 
 build:
   entry_points:
